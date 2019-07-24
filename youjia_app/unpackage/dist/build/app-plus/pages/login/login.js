@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"uni-input{ border-bottom:1px solid #ccc; width: 83%; margin-left: auto; margin-right: auto; }\n.",[1],"forgotPassword{ margin-top: 20px; margin-left: 9%; font-size: 15px; }\n",])();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/login.wxml') } }));
