@@ -10,7 +10,7 @@
 		</view>
 		
 		<view class="uni-padding-wrap uni-common-mt">
-            <form @submit="formSubmit">
+            <form>
                 <view class="uni-form-item uni-column">
                         <input class="uni-input" maxlength="11" placeholder="用户名" />
                     </view>
@@ -25,7 +25,7 @@
 				</view>
 				
                 <view class="uni-btn-v">
-                    <button formType="submit" type="primary">登录</button>
+                    <button type="primary" @tap="submit">登录</button>
                 </view>
 				
             </form>
@@ -53,9 +53,9 @@
         imageError: function(e) {
             console.error('image发生error事件，携带值为' + e.detail.errMsg)
         },
-		formSubmit(e) {
-            uni.navigateTo({
-				url: '../home/home'
+		submit() {
+            uni.reLaunch({
+				url: '/pages/home/info1/home_page'
 			});
         },
 		register(){
