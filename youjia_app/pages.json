@@ -50,7 +50,7 @@
         "color": "#cdcdcd",
         "selectedColor": "#39cffc",
         "borderStyle": "black",
-        "backgroundColor": "pink",
+        "backgroundColor": "#F4F5F6",
         "list": [{
                 "pagePath": "pages/home/info1/home_page",
                 "iconPath": "static/footer_icon/a2.png",
@@ -60,7 +60,7 @@
                 "pagePath": "pages/home/info2/info2",
                 "iconPath": "static/footer_icon/f2.png",
                 "selectedIconPath": "static/footer_icon/f1.png",
-                "text": "发现"
+                "text": "房源"
             }, {
                 "pagePath": "pages/home/info3/info3",
                "iconPath": "static/footer_icon/d1.png",
