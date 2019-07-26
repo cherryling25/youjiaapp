@@ -28,8 +28,33 @@
             </view>
         </view>
 		
-		<!--table-->
+		<!--九宫格-->
+		<uni-grid :column="3" :show-border="false"  :square="false">
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+			<uni-grid-item>
+				<text class="text">文本</text>
+			</uni-grid-item>
+		</uni-grid>
 		
+		<!--在线交租按钮-->
+		<view class="btn">
+			<!--<navigator url="../../login/login"></navigator>-->
+			<button type="primary">在线交租</button>
+		</view>
 		
 		<!--tabbar-->
 		<footerNav></footerNav>
@@ -37,8 +62,9 @@
 </template>
 
 <script>
-	
-	import footerNav from "../../../components/footer/footer_nav.vue";
+	import uniGrid from "@/components/uni-grid/uni-grid.vue"
+	import uniGridItem from "@/components/uni-grid-item/uni-grid-item.vue"
+	import footerNav from "../../../components/footer/footer_nav.vue"
 	
 	export default {
 		data() {
@@ -54,7 +80,8 @@
 			
 		},
 		components: {
-			
+			uniGrid,
+			uniGridItem,
 			footerNav
 		}
 		
