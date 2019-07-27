@@ -29,26 +29,102 @@
         </view>
 		
 		<!--九宫格-->
-		<uni-grid :column="3" :show-border="false"  :square="false">
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-			<uni-grid-item>
-				<text class="text">文本</text>
-			</uni-grid-item>
-		</uni-grid>
+		<view class="jiu">
+			<text class="text-titlte">费用（专用）收据</text>
+			<uni-grid :column="4" :show-border="true"  :square="false">
+				<uni-grid-item>
+					<text class="text">项目</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">单价</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">本月读表</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">金额</text>
+				</uni-grid-item>
+				
+				<uni-grid-item>
+					<text class="text">电费</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">1.5</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">102度</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">200元</text>
+				</uni-grid-item>
+				
+				
+				<uni-grid-item>
+					<text class="text">冷水费</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">5</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">1t</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">5元</text>
+				</uni-grid-item>
+				
+				
+				<uni-grid-item>
+					<text class="text">热水费</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">10</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">2t</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">20元</text>
+				</uni-grid-item>
+			</uni-grid>
+			
+			<uni-grid :column="4" :show-border="true"  :square="false">
+				<uni-grid-item>
+					<text class="text">物管费 </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">100元 </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
+				</uni-grid-item>
+			</uni-grid>
+			
+			<uni-grid :column="4" :show-border="true"  :square="false">
+				<uni-grid-item>
+					<text class="text">房租 </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">1000元 </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
+				</uni-grid-item>
+			</uni-grid>
+			
+			<uni-grid :column="1" :show-border="true"  :square="false">
+				<uni-grid-item>
+					<text class="text">合计 1400元</text>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		
+		
 		
 		<!--在线交租按钮-->
 		<view class="btn">
@@ -77,6 +153,18 @@
 			}
 		},
 		methods: {
+			/*openbtn(){
+				uni.requestPayment({
+					provider: 'alipay',
+					orderInfo: 'orderInfo', //微信、支付宝订单数据
+					success: function (res) {
+						console.log('success:' + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log('fail:' + JSON.stringify(err));
+					}
+				});
+			}*/
 			
 		},
 		components: {
@@ -89,5 +177,17 @@
 </script>
 
 <style>
-
+.jiu{
+	margin-top: 35upx;
+	
+}
+.jiu .text-titlte{
+	margin-left: auto;
+	margin-right: auto;
+}
+.btn button{
+	width: 94%;
+	margin-top: 7%;
+	
+}
 </style>
