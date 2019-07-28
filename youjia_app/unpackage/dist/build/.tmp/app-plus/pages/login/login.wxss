@@ -1,15 +1,19 @@
 
 .uni-input{
 		border-bottom:1px solid #ccc;
-		width: 83%;
-		margin-left: auto;
-		margin-right: auto;
 }
 .forgotPassword{
-	  margin-top: 20px;
-	  margin-left: 9%;
-	  font-size: 15px;
+	  margin-top: 20rpx;
+	  color: #576B95;
 }
-		
-      
+.uni-btn-v{
+		margin-top: 40rpx;
+}
+.register{
+		margin-left: 30rpx;
+		margin-top: 40rpx;
+}
+.reg{
+		color: #007AFF;
+}
 

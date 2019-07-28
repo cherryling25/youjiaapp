@@ -1,0 +1,6 @@
+
+.btn button{
+	width: 94%;
+	margin-top: 30%;
+}
+

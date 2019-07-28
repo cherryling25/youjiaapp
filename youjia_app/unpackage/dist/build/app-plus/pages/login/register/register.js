@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"uni-input{ border-bottom:1px solid #ccc; }\n",])();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/register/register.wxml') } }));

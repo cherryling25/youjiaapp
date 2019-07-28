@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"jiu{ margin-top: ",[0,35],"; }\n.",[1],"btn wx-button{ width: 94%; margin-top: 7%; }\n",])();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/home/info1/home_page.wxml') } }));

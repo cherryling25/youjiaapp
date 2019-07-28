@@ -1,0 +1,1 @@
+<view><view class="footer"><view data-event-opts="{{[['tap',[['openhome',['$event']]]]]}}" class="footer_item" bindtap="__e"></view><view data-event-opts="{{[['tap',[['openfind',['$event']]]]]}}" class="footer_item" bindtap="__e"></view><view data-event-opts="{{[['tap',[['openme',['$event']]]]]}}" class="footer_item" bindtap="__e"></view></view></view>

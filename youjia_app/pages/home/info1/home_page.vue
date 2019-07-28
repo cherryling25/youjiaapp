@@ -4,21 +4,21 @@
 		<view class="uni-padding-wrap">
             <view class="page-section swiper">
                 <view class="page-section-spacing">
-                    <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+                    <swiper class="swiper" :indicator-dots="indicatorDots" circular="true" :autoplay="autoplay" :interval="interval" :duration="duration">
                         <swiper-item>
-                            <view class="swiper-item">
+                            <view class="swiper-item" style="100%">
 								<image src="../../../static/switch.jpeg" mode=""></image>
 							</view>
                         </swiper-item>
 						
                         <swiper-item>
-                            <view class="swiper-item">
-								<image src="../../../static/switch.jpeg" mode=""></image>
+                            <view class="swiper-item" style="100%">
+								<image src="../../../static/login-logo.jpg" mode=""></image>
 							</view>
                         </swiper-item>
 						
                         <swiper-item>
-                            <view class="swiper-item">
+                            <view class="swiper-item" style="100%">
 								<image src="../../../static/switch.jpeg" mode=""></image>
 							</view>
                         </swiper-item>
@@ -30,7 +30,6 @@
 		
 		<!--九宫格-->
 		<view class="jiu">
-			<text class="text-titlte">费用（专用）收据</text>
 			<uni-grid :column="4" :show-border="true"  :square="false">
 				<uni-grid-item>
 					<text class="text">项目</text>
@@ -145,7 +144,7 @@
 	export default {
 		data() {
 			return {
-				indicatorDots: true,
+				indicatorDots: false,
 				autoplay: true,
 				interval: 2000,
 				duration: 500
@@ -181,13 +180,12 @@
 	margin-top: 35upx;
 	
 }
-.jiu .text-titlte{
-	margin-left: auto;
-	margin-right: auto;
-}
+
 .btn button{
 	width: 94%;
 	margin-top: 7%;
 	
 }
+
+
 </style>

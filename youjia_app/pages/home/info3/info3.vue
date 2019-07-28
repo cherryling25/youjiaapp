@@ -12,9 +12,9 @@
 						2019-01-01 到 2019-06-06
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="物管费">
+				<uni-collapse-item title="社区编号">
 					<view style="padding: 30upx;">
-						100元
+						青年社区一栋
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="押金">
@@ -55,7 +55,7 @@
 <style>
 .btn button{
 	width: 94%;
-	margin-top: 40%;
+	margin-top: 30%;
 	
 }
 </style>

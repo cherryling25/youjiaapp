@@ -1,0 +1,11 @@
+
+.jiu{
+	margin-top: 35rpx;
+}
+.btn button{
+	width: 94%;
+	margin-top: 7%;
+}
+
+
+
