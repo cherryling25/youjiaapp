@@ -11,7 +11,7 @@
 }
 .register{
 		margin-left: 30rpx;
-		margin-top: 40rpx;
+		margin-top: 30rpx;
 }
 .reg{
 		color: #007AFF;

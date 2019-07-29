@@ -3,9 +3,7 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"app-plus": {
-                    "titleNView": false //禁用原生导航栏
-                }
+				"navigationBarTitleText": "登录 "
 			}
 		}
         ,{
@@ -17,32 +15,34 @@
         ,{
             "path" : "pages/home/info1/home_page",
             "style" : {
-				"app-plus": {
-				    "titleNView": false //禁用原生导航栏
-				},
-				"enablePullDownRefresh":true//开启下拉刷新
+				
+				//"enablePullDownRefresh":true//开启下拉刷新
 			}
         }
 		,{
 		    "path" : "pages/home/info2/info2",
 		    "style" : {
-				"app-plus": {
-				    "titleNView": false //禁用原生导航栏
-				}
+				
 			}
 		}
 		,{
 		    "path" : "pages/home/info3/info3",
 		    "style" : {
-				"app-plus": {
-				    "titleNView": false //禁用原生导航栏
-				}
+				
 			}
 		}
+        ,{
+            "path" : "static/image/image",
+            "style" : {}
+        }
+        ,{
+            "path" : "static/image/image",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": " ",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

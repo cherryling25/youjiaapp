@@ -3,7 +3,7 @@
 		<view class="image-list">
 			<view class="image-item" v-for="(item,index) in array" :key="index">
 				<view class="image-content">
-					<image style="width: 350px; height: 350px;" :mode="item.mode" :src="src"
+					<image style="width: 350px; height: 300px;" :mode="item.mode" :src="src"
 						@error="imageError"></image>
 				</view>
 			</view>
@@ -84,7 +84,7 @@
 	
 	.register{
 		margin-left: 30upx;
-		margin-top: 40upx;
+		margin-top: 30upx;
 	}
 	
 	.reg{

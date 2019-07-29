@@ -1,5 +1,4 @@
 {
-  "titleNView": false,
   "usingComponents": {
     "picker": "/components/mpvue-picker/mpvuePicker",
     "uni-card": "/components/uni-card/uni-card"
