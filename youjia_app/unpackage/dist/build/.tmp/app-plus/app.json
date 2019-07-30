@@ -4,9 +4,7 @@
     "pages/login/register/register",
     "pages/home/info1/home_page",
     "pages/home/info2/info2",
-    "pages/home/info3/info3",
-    "static/image/image",
-    "static/image/image"
+    "pages/home/info3/info3"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -4,6 +4,7 @@
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录 "
+				
 			}
 		}
         ,{
@@ -15,30 +16,23 @@
         ,{
             "path" : "pages/home/info1/home_page",
             "style" : {
-				
+				"navigationBarTitleText": "首页 "
 				//"enablePullDownRefresh":true//开启下拉刷新
 			}
         }
 		,{
 		    "path" : "pages/home/info2/info2",
 		    "style" : {
-				
+				"navigationBarTitleText": "房源查看 "
 			}
 		}
 		,{
 		    "path" : "pages/home/info3/info3",
 		    "style" : {
-				
+				"navigationBarTitleText": "我的 "
 			}
 		}
-        ,{
-            "path" : "static/image/image",
-            "style" : {}
-        }
-        ,{
-            "path" : "static/image/image",
-            "style" : {}
-        }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

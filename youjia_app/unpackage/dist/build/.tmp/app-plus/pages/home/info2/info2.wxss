@@ -4,6 +4,7 @@
 	float: left;
 }
 .sel{
-	padding: 12rpx;
+	
+	padding-top: 20rpx;
 }
 

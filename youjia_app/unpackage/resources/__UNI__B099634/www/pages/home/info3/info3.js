@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"btn wx-button{ width: 94%; margin-top: 30%; }\n",])();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/home/info3/info3.wxml') } }));

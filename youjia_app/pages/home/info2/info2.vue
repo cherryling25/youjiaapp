@@ -2,18 +2,9 @@
 	<view>
 		<!--选择器-->
 		<view class="sel">
-			<view class="uni-list">
-			    <view class="uni-list-cell">
-			        <view class="uni-list-cell-left">
-			            当前选择
-			        </view>
-			        <view class="uni-list-cell-db">
-			            <picker @change="bindPickerChange" :value="index" :range="array">
-			                <view class="uni-input">{{array[index]}}</view>
-			            </picker>
-			        </view>
-			    </view>
-			</view>
+			<view @tap="showSinglePicker" v-if="shopList.length != 0"> &nbsp;&nbsp;&nbsp;当前选择: {{shopList[index]}}</view>
+			 <mpvue-picker ref="mpvuePicker" :mode="mode" :pickerValueDefault="index" @onChange="onChange" @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="shopList">
+			 </mpvue-picker>
 		</view>
         
 		
@@ -47,24 +38,47 @@
 </template>
 
 <script>
-	import Picker from "@/components/mpvue-picker/mpvuePicker.vue"
+	import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue'
 	import uniCard from "@/components/uni-card/uni-card"
 	
 	export default {
 		data() {
 			return {
-				array: ['有家青年社区一栋', '有家青年社区二栋', '有家青年社区三栋'],
-				index: 0
+				//array: ['有家青年社区一栋', '有家青年社区二栋', '有家青年社区三栋'],
+				shopList:['有家青年社区一栋', '有家青年社区二栋', '有家青年社区三栋'],
+				index:[0],
+				mode: 'selector',
+				
 			}
 		},
 		methods: {
-			bindPickerChange(e) {
-            console.log('picker发送选择改变，携带值为', e.target.value)
-            this.index = e.target.value
-        }
+			showPicker() {
+			  this.$refs.mpvuePicker.show();
+			},
+			onConfirm(e) {
+				this.index = e.index
+			},
+			onChange(e) {
+			  this.index = e.index
+			},
+			onCancel(e) {
+				console.log('onCancel')
+			  console.log(e);
+			},
+			selectChange(e){
+				this.index = e.detail.value
+			},
+			showSinglePicker() {
+				console.log(this.shopList)
+				this.mode = 'selector'
+				this.index = [0]
+				this.$refs.mpvuePicker.show()
+			}
+
+        
 		},
 		components: {
-			Picker,
+			mpvuePicker,
 			uniCard
 			
 		}
@@ -78,7 +92,7 @@
 }
 
 .sel{
-	margin-top: 10upx;
-	padding: 12upx;
+	
+	padding-top: 20upx;
 }
 </style>
