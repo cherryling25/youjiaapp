@@ -30,22 +30,31 @@
 		
 		<!--九宫格-->
 		<view class="jiu">
-			<uni-grid :column="4" :show-border="true"  :square="false">
+			<uni-grid :column="5" :show-border="true"  :square="false">
 				<uni-grid-item>
 					<text class="text">项目</text>
 				</uni-grid-item>
+				
 				<uni-grid-item>
 					<text class="text">单价</text>
 				</uni-grid-item>
+				
 				<uni-grid-item>
+					<text class="text">上月读表</text>
+				</uni-grid-item>
+				<uni-grid-item>	
 					<text class="text">本月读表</text>
 				</uni-grid-item>
+				
 				<uni-grid-item>
 					<text class="text">金额</text>
 				</uni-grid-item>
 				
 				<uni-grid-item>
 					<text class="text">电费</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">1.5</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">1.5</text>
@@ -65,6 +74,9 @@
 					<text class="text">5</text>
 				</uni-grid-item>
 				<uni-grid-item>
+					<text class="text">1.5</text>
+				</uni-grid-item>
+				<uni-grid-item>
 					<text class="text">1t</text>
 				</uni-grid-item>
 				<uni-grid-item>
@@ -77,6 +89,9 @@
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">10</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text">1.5</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">2t</text>

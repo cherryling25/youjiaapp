@@ -30,6 +30,10 @@
                 <button type="warn">退出登录</button>
             </navigator>
 		</view>
+		
+		<view class="btn2">
+		        <button type="default" @tap="open">在线退租</button>
+		</view>
 	</view>
 </template>
 
@@ -43,7 +47,19 @@
 			}
 		},
 		methods: {
-			
+			open(){
+				uni.showModal({
+					title: '提示',
+					content: '确认退房？',
+					success: function (res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			}
 		},
 		components: {
 			uniCollapse,
@@ -55,7 +71,13 @@
 <style>
 .btn button{
 	width: 94%;
-	margin-top: 30%;
+	margin-top: 20%;
 	
+}
+
+.btn2 button{
+	color: #007AFF;
+	margin-top: 9upx;
+	width: 94%;
 }
 </style>
