@@ -1,6 +1,12 @@
 
 .btn button{
+	color: #007AFF;
 	width: 94%;
-	margin-top: 30%;
+	margin-top: 15%;
+}
+.btn2 button{
+	
+	margin-top: 3%;
+	width: 94%;
 }
 

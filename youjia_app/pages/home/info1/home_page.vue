@@ -101,9 +101,9 @@
 				</uni-grid-item>
 			</uni-grid>
 			
-			<uni-grid :column="4" :show-border="true"  :square="false">
+			<uni-grid :column="5" :show-border="true"  :square="false">
 				<uni-grid-item>
-					<text class="text">物管费 </text>
+					<text class="text">管理费</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">100元 </text>
@@ -114,14 +114,20 @@
 				<uni-grid-item>
 					<text class="text"> - </text>
 				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
+				</uni-grid-item>
 			</uni-grid>
 			
-			<uni-grid :column="4" :show-border="true"  :square="false">
+			<uni-grid :column="5" :show-border="true"  :square="false">
 				<uni-grid-item>
 					<text class="text">房租 </text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">1000元 </text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<text class="text"> - </text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text"> - </text>

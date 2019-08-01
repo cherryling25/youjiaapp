@@ -26,14 +26,16 @@
 		</view>
 		
 		<view class="btn">
+		        <button type="default" @tap="open">退租申请</button>
+		</view>
+		
+		<view class="btn2">
 			<navigator url="../../login/login">
                 <button type="warn">退出登录</button>
             </navigator>
 		</view>
 		
-		<view class="btn2">
-		        <button type="default" @tap="open">在线退租</button>
-		</view>
+		
 	</view>
 </template>
 
@@ -70,14 +72,15 @@
 
 <style>
 .btn button{
+	color: #007AFF;
 	width: 94%;
-	margin-top: 20%;
+	margin-top: 15%;
 	
 }
 
 .btn2 button{
-	color: #007AFF;
-	margin-top: 9upx;
+	
+	margin-top: 3%;
 	width: 94%;
 }
 </style>

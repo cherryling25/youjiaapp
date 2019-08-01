@@ -16,7 +16,7 @@
         ,{
             "path" : "pages/home/info1/home_page",
             "style" : {
-				"navigationBarTitleText": "首页 "
+				
 				//"enablePullDownRefresh":true//开启下拉刷新
 			}
         }
