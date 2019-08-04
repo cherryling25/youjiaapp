@@ -80,7 +80,7 @@
 					<text class="text">1t</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">5元</text>
+					<text class="text">{{chargeObject.waterFee}}</text>
 				</uni-grid-item>
 				
 				
@@ -168,7 +168,10 @@
 				indicatorDots: false,
 				autoplay: true,
 				interval: 2000,
-				duration: 500
+				duration: 500,
+				chargeObject : {
+					waterFee : 100
+				}
 				
 			}
 		},
