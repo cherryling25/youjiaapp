@@ -54,7 +54,7 @@
 					<text class="text">电费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1.5</text>
+					<text class="text">1.6</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">1.5</text>
