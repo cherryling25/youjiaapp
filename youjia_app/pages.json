@@ -33,6 +33,10 @@
 			}
 		}
         
+        ,{
+            "path" : "pages/home/info4/info4",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
