@@ -1,36 +1,35 @@
 <template>
 	<view class="register">
 		<view class="uni-padding-wrap uni-common-mt">
-		    <form @submit="formSubmit">
+		    <form :model="user" @submit="formSubmit">
 		        <view class="uni-form-item uni-column">
-		            <input class="uni-input" maxlength="11" placeholder="请输入手机号码" />
+		            <input class="uni-input" v-model="user.phone" maxlength="11" placeholder="请输入手机号码" />
 		        </view>
 		        
 				<view class="uni-form-item uni-column">
-				    <input class="uni-input" maxlength="11" placeholder="请输入身份证号码" />
+				    <input class="uni-input" v-model="user.idCard" maxlength="11" placeholder="请输入身份证号码" />
 				</view>
 		        
 		        <view class="uni-form-item uni-column">
-		            <input class="uni-input" password type="text" placeholder="请输入登录密码(6-10位数字字母组合密码)" />
+		            <input class="uni-input" v-model="user.password" password type="text" placeholder="请输入登录密码(6-10位数字字母组合密码)" />
 		        </view>
 				
 				<view class="uni-form-item uni-column">
-				    <input class="uni-input" password type="text" placeholder="确认密码" />
+				    <input class="uni-input" v-model="user.confirmedPassword" password type="text" placeholder="确认密码" />
 				</view>
 				
 				<!-- 上传图片-->
 				<view>
 					<view class='upload-image-view'>
-			<block v-for="(image,index) in imageList" :key="index">
-				<view class='image-view'>
-					<image :src="image" :data-src="image" @tap="previewImage"></image>
-					<view class='del-btn' :data-index="index" @tap='deleteImage'>
+					<block v-for="(image,index) in imageList" :key="index">
+						<view class='image-view'>
+							<image :src="image" :data-src="image" @tap="previewImage"></image>
+							<view class='del-btn' :data-index="index" @tap='deleteImage'>
 						<view class='baicha'></view>
-					</view>
-				</view>
-			</block>
+							</view>
+						</view>
+					</block>
 			<view class='add-view' v-if="imageList.length < imageLength" @tap="chooseImage">
- 
 				<!-- 相机 -->
 				<!--<view class="xiangji">
 							<view class="tixing"></view>
@@ -40,25 +39,19 @@
 								</view>
 							</view>
 						</view>-->
- 
 				<!-- 十字架 -->
 				<view class="cross">
 					<view class="transverse-line"></view>
 					<view class="vertical-line"></view>
 				</view>
- 
 			</view>
-			<view class='info'>上传身份证正反面，本人照，不超过{{imageLength}}张。(必填)</view>
+		
+		<view class='info'>上传身份证正反面，本人照，不超过{{imageLength}}张。(必填)</view>
 		</view>
-
-
-					
 				</view>
-				
 		        <view class="uni-btn-v">
 		            <button formType="submit" type="primary">立即注册</button>
 		        </view>
-				
 		    </form>
 		</view>
 	</view>
@@ -81,6 +74,12 @@
 	export default {
 		data() {
 			return {
+				user: {
+					phone:"",
+					idCard:"",
+					password:"",
+					confirmedPassword:""
+				},
 				imageList: [], //保存图片路径集合
 				imageLength: 3, //限制图片张数
 				sourceTypeIndex: 2, //添加方式限制
@@ -89,16 +88,34 @@
 		},
 		methods: {
 			formSubmit() {
-			    uni.navigateTo({
-					url: '../login'
-				});
+				uni.uploadFile({
+					url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
+					filePath:this.imageList[0],
+					name: 'files',
+					formData: {
+						phone: this.user.phone,
+						idCard : this.user.idCard,
+						password : this.user.password,
+						confirmedPassword : this.user.confirmedPassword
+					},
+					success: function (res) {
+						if(res.data) {
+							alert("success");		//弹出框，注册成功
+							uni.navigateTo({
+								url: '../login'
+							});
+						} else {
+							alert('register error');
+						}
+					},
+					
+				})
+			    
 			},
 			chooseImage:  function() {
 					uni.chooseImage({
 						sourceType: sourceType[this.sourceTypeIndex],
-						// #ifdef MP-WEIXIN
 						sizeType: sizeType[this.sizeTypeIndex],
-						// #endif
 						count: this.imageLength - this.imageList.length,
 						success: (res) => {
 							this.imageList = this.imageList.concat(res.tempFilePaths);

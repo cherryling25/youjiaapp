@@ -54,16 +54,16 @@
 					<text class="text">电费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1.6</text>
+					<text class="text">{{chargeObject.electricityPrice}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1.5</text>
+					<text class="text">{{chargeObject.lastMonthElectricity}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">102度</text>
+					<text class="text">{{chargeObject.currentElectricity}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">200元</text>
+					<text class="text">{{chargeObject.electricityFee}}</text>
 				</uni-grid-item>
 				
 				
@@ -71,13 +71,13 @@
 					<text class="text">冷水费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">5</text>
+					<text class="text">{{chargeObject.waterPrice}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1.5</text>
+					<text class="text">{{chargeObject.lastMonthWater}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1t</text>
+					<text class="text">{{chargeObject.currentWater}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text">{{chargeObject.waterFee}}</text>
@@ -88,16 +88,16 @@
 					<text class="text">热水费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">10</text>
+					<text class="text">{{chargeObject.hotWaterPrice}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1.5</text>
+					<text class="text">{{chargeObject.lastMonthHotWater}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">2t</text>
+					<text class="text">{{chargeObject.currentHotWater}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">20元</text>
+					<text class="text">{{chargeObject.hotWaterFee}}</text>
 				</uni-grid-item>
 			</uni-grid>
 			
@@ -106,7 +106,7 @@
 					<text class="text">管理费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">100元 </text>
+					<text class="text">{{chargeObject.adminFee}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text"> - </text>
@@ -124,7 +124,7 @@
 					<text class="text">房租 </text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">1000元 </text>
+					<text class="text">{{chargeObject.rent}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text"> - </text>
@@ -139,7 +139,7 @@
 			
 			<uni-grid :column="1" :show-border="true"  :square="false">
 				<uni-grid-item>
-					<text class="text">合计 1400元</text>
+					<text class="text">合计 {{chargeObject.total}}</text>
 				</uni-grid-item>
 			</uni-grid>
 		</view>
@@ -170,12 +170,33 @@
 				interval: 2000,
 				duration: 500,
 				chargeObject : {
-					waterFee : 100
-				}
+					electricityPrice:"",
+					lastMonthElectricity:"",
+					currentElectricity:"",
+					electricityFee:"",
+					
+					waterPrice:"",
+					lastMonthWater:"",
+					currentWater:"",
+					waterFee : "",
+					
+					hotWaterPrice:"",
+					lastMonthHotWater:"",
+					currentHotWater:"",
+					hotWaterFee:"",
+					
+					adminFee:"",
+					rent:"",
+					total:""
+					
+				},
 				
 			}
 		},
 		methods: {
+			onload(){
+				
+			}
 			/*openbtn(){
 				uni.requestPayment({
 					provider: 'alipay',

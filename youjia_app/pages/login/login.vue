@@ -20,9 +20,9 @@
                     <input class="uni-input" v-model="user.password" type="password" placeholder="密码" />
                 </view>
 				
-				<!--<view class="forgotPassword">
+				<!--加个弹出框<view class="forgotPassword">
 					<text>忘记密码？</text>
-				</view>-->
+				</view>-->	
 				
                 <view class="uni-btn-v">
                     <button type="primary" @tap="login">登录</button>
@@ -53,7 +53,7 @@
 				
 			  ],
 			  password: [
-				{ required: true, message: '请输入密码', trigger: 'blur' },
+				{ required: true, message: '请输入密码', trigger: 'blur' },//trigger是什么
 				
 			  ]
 			},
