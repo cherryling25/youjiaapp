@@ -20,9 +20,20 @@
                     <input class="uni-input" v-model="user.password" type="password" placeholder="密码" />
                 </view>
 				
-				<!--加个弹出框<view class="forgotPassword">
-					<text>忘记密码？</text>
-				</view>-->	
+				<view class="forgotPassword">
+					<text @click="openPopup">忘记密码？</text>
+					<uni-popup ref="popup" type="center">
+						请联系管理员
+					</uni-popup>
+					
+				</view>	
+				<!--<view>
+					<button @click="openPopup">打开弹出层</button>
+					<uni-popup ref="popup" type="center">
+						弹出层示例
+						<button @click="closePopup">关闭弹出层</button>
+					</uni-popup>
+				</view>-->
 				
                 <view class="uni-btn-v">
                     <button type="primary" @tap="login">登录</button>
@@ -40,6 +51,8 @@
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
+	
 	export default {
     data() {
         return {
@@ -63,11 +76,19 @@
             src: '../../static/login-logo.jpg'
         }
     },
+	
+	components: {
+		uniPopup
+		},
+		
     methods: {
         imageError: function(e) {
             console.error('image发生error事件，携带值为' + e.detail.errMsg)
         },
-		
+		openPopup(e){
+            this.$refs.popup.open()
+        },
+        	
 		login(){
 			uni.request({
 				url: 'http://192.168.1.104:8080/gongyv_manage/api/login.action',
@@ -80,6 +101,7 @@
 								url: '/pages/home/info1/home_page'
 							});
 						} else {
+							
 							alert('LoginName or password incorrect'); //弹出框
 						}
 					},
