@@ -7,7 +7,7 @@
 		        </view>
 		        
 				<view class="uni-form-item uni-column">
-				    <input class="uni-input" v-model="user.idCard" maxlength="11" placeholder="请输入身份证号码" />
+				    <input class="uni-input" v-model="user.idCard" maxlength="18" placeholder="请输入身份证号码" />
 				</view>
 		        
 		        <view class="uni-form-item uni-column">
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-	
+	var  graceChecker = require("../../../common/graceChecker.js");
 	
 	var sourceType = [
 		['camera'], //拍照
@@ -87,31 +87,45 @@
 			}
 		},
 		methods: {
-			formSubmit() {
-				uni.uploadFile({
-					url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
-					filePath:this.imageList[0],
-					name: 'files',
-					formData: {
-						phone: this.user.phone,
-						idCard : this.user.idCard,
-						password : this.user.password,
-						confirmedPassword : this.user.confirmedPassword
-					},
-					success: function (res) {
-						if(res.data) {
-							alert("success");		//弹出框，注册成功
-							uni.navigateTo({
-								url: '../login'
-							});
-						} else {
-							alert('register error');
-						}
-					},
-					
-				})
-			    
-			},
+			formSubmit (e) {
+			                //将下列代码加入到对应的检查位置
+			                //定义表单规则
+			                var rule = [
+			                    {name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
+			                    {name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入密码"}
+			                ];
+			                //进行表单检查
+			                var formData = e.detail.value;
+			                var checkRes = graceChecker.check(formData, rule);
+							var that = this;
+			                if(checkRes){
+			                    uni.uploadFile({
+			                    	url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
+			                    	filePath:this.imageList[0],
+			                    	name: 'files',
+			                    	formData: {
+			                    		phone: this.user.phone,
+			                    		idCard : this.user.idCard,
+			                    		password : this.user.password,
+			                    		confirmedPassword : this.user.confirmedPassword
+			                    	},
+			                    	success: function (res) {
+			                    		if(res.data) {
+			                    			that.$refs.popup2.open();	//弹出框，注册成功
+			                    			uni.navigateTo({
+			                    				url: '../login'
+			                    			});
+			                    		} else {
+			                    			alert('register error');
+			                    		}
+			                    	},
+			                    	
+			                    })
+			                }else{
+			                    uni.showToast({ title: graceChecker.error, icon: "none" });
+			                }
+			            },
+						
 			chooseImage:  function() {
 					uni.chooseImage({
 						sourceType: sourceType[this.sourceTypeIndex],
