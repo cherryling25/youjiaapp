@@ -12,7 +12,7 @@
 		<view class="uni-padding-wrap uni-common-mt">
             <form :model="user" @submit="formSubmit">
                 <view class="uni-form-item uni-column">
-                        <input class="uni-input" name="loginName" v-model="user.loginName" maxlength="11" placeholder="用户名" />
+                        <input class="uni-input" name="loginName" v-model="user.loginName" maxlength="11" placeholder="手机号码" />
                     </view>
                 
                 
@@ -29,19 +29,9 @@
 						用户名或密码错误
 					</uni-popup>
 				</view>	
-				<!--<view>
-					<button @click="openPopup">打开弹出层</button>
-					<uni-popup ref="popup" type="center">
-						弹出层示例
-						<button @click="closePopup">关闭弹出层</button>
-					</uni-popup>
-				</view>-->
 				
                 <view class="uni-btn-v">
                     <button type="primary" formType="submit">登录</button>
-					<!--<uni-popup :show="true" type="middle" msg="popup 文字内容">
-					
-					</uni-popup>-->
                 </view>
 				
             </form>

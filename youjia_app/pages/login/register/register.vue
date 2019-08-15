@@ -3,19 +3,19 @@
 		<view class="uni-padding-wrap uni-common-mt">
 		    <form :model="user" @submit="formSubmit">
 		        <view class="uni-form-item uni-column">
-		            <input class="uni-input" v-model="user.phone" maxlength="11" placeholder="请输入手机号码" />
+		            <input class="uni-input" v-model="user.phone" name="phone" maxlength="11" placeholder="请输入手机号码" />
 		        </view>
 		        
 				<view class="uni-form-item uni-column">
-				    <input class="uni-input" v-model="user.idCard" maxlength="18" placeholder="请输入身份证号码" />
+				    <input class="uni-input" v-model="user.idCard" name="idCard" maxlength="18" placeholder="请输入身份证号码" />
 				</view>
 		        
 		        <view class="uni-form-item uni-column">
-		            <input class="uni-input" v-model="user.password" password type="text" placeholder="请输入登录密码(6-10位数字字母组合密码)" />
+		            <input class="uni-input" v-model="user.password" name="password" type="password" placeholder="请输入登录密码(6-10位数字字母组合密码)" />
 		        </view>
 				
 				<view class="uni-form-item uni-column">
-				    <input class="uni-input" v-model="user.confirmedPassword" password type="text" placeholder="确认密码" />
+				    <input class="uni-input" v-model="user.confirmedPassword" name="confirmedPassword" type="password" placeholder="确认密码" />
 				</view>
 				
 				<!-- 上传图片-->
@@ -51,6 +51,12 @@
 				</view>
 		        <view class="uni-btn-v">
 		            <button formType="submit" type="primary">立即注册</button>
+					<uni-popup ref="popup" type="center">
+						注册成功
+					</uni-popup>
+					<uni-popup ref="popup2" type="center">
+						信息错误
+					</uni-popup>
 		        </view>
 		    </form>
 		</view>
@@ -58,6 +64,7 @@
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	var  graceChecker = require("../../../common/graceChecker.js");
 	
 	var sourceType = [
@@ -75,10 +82,10 @@
 		data() {
 			return {
 				user: {
-					phone:"",
-					idCard:"",
-					password:"",
-					confirmedPassword:""
+					phone:"17872981234",
+					idCard:"431172867264536121",
+					password:"1234",
+					confirmedPassword:"1234"
 				},
 				imageList: [], //保存图片路径集合
 				imageLength: 3, //限制图片张数
@@ -86,45 +93,55 @@
 				sizeTypeIndex: 2, //图片尺寸限制
 			}
 		},
+		
+		components: {
+			uniPopup
+			},
+			
 		methods: {
 			formSubmit (e) {
-			                //将下列代码加入到对应的检查位置
-			                //定义表单规则
-			                var rule = [
-			                    {name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
-			                    {name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入密码"}
-			                ];
-			                //进行表单检查
-			                var formData = e.detail.value;
-			                var checkRes = graceChecker.check(formData, rule);
-							var that = this;
-			                if(checkRes){
-			                    uni.uploadFile({
-			                    	url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
-			                    	filePath:this.imageList[0],
-			                    	name: 'files',
-			                    	formData: {
-			                    		phone: this.user.phone,
-			                    		idCard : this.user.idCard,
-			                    		password : this.user.password,
-			                    		confirmedPassword : this.user.confirmedPassword
-			                    	},
-			                    	success: function (res) {
-			                    		if(res.data) {
-			                    			that.$refs.popup2.open();	//弹出框，注册成功
-			                    			uni.navigateTo({
-			                    				url: '../login'
-			                    			});
-			                    		} else {
-			                    			alert('register error');
-			                    		}
-			                    	},
-			                    	
-			                    })
-			                }else{
-			                    uni.showToast({ title: graceChecker.error, icon: "none" });
-			                }
-			            },
+				//将下列代码加入到对应的检查位置
+				//定义表单规则
+				var rule = [
+					{name:"phone", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
+					{name:"idCard", checkType : "notnull", checkRule:"",  errorMsg:"请输入正确的身份证号"},
+					{name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入正确的密码"},
+					{name:"confirmedPassword", checkType : "notnull", checkRule:"",  errorMsg:"请确认密码"}
+				];
+				//进行表单检查
+				var formData = e.detail.value;
+				var checkRes = graceChecker.check(formData, rule);
+				var that = this;
+				if(checkRes){
+					uni.uploadFile({
+						url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
+						filePath:this.imageList[0],
+						name: 'files',
+						formData: {
+							phone: this.user.phone,
+							idCard : this.user.idCard,
+							password : this.user.password,
+							confirmedPassword : this.user.confirmedPassword
+						},
+						success: function (res) {
+							if(res.data) {
+								that.$refs.popup.open();	//弹出框，注册成功
+								function out(){
+									uni.navigateTo({
+										url: '../login'
+									});
+								}
+								setTimeout(out,3000);   //   在3000毫秒后只执行一次
+							} else {
+								that.$refs.popup2.open();
+							}
+						},
+						
+					})
+				}else{
+					uni.showToast({ title: graceChecker.error, icon: "none" });
+				}
+			},
 						
 			chooseImage:  function() {
 					uni.chooseImage({
