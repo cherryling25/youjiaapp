@@ -50,13 +50,14 @@
 	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	//来自 graceUI 的表单验证， 使用说明见手册 http://grace.hcoder.net/doc/info/73-3.html
 	var  graceChecker = require("../../common/graceChecker.js");
+	
 	export default {
     data() {
         return {
 			title:"",
 			user: {
-			  loginName: '',
-			  password: ''
+			  loginName: '13849284829',
+			  password: 'lin123'
 			},
             array: [{
                 mode: 'scaleToFill',
@@ -73,45 +74,48 @@
         imageError: function(e) {
             console.error('image发生error事件，携带值为' + e.detail.errMsg)
         },
+		
 		openPopup(e){
             this.$refs.popup.open();
         },
 		
-		
-        	formSubmit (e) {
-        	                //将下列代码加入到对应的检查位置
-        	                //定义表单规则
-        	                var rule = [
-        	                    {name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
-        	                    {name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入密码"}
-        	                ];
-        	                //进行表单检查
-        	                var formData = e.detail.value;
-        	                var checkRes = graceChecker.check(formData, rule);
-							var that = this;
-        	                if(checkRes){
-        	                    uni.request({
-        	                    	url: 'http://192.168.1.104:8080/gongyv_manage/api/login.action',
-        	                    	data: {loginName: this.user.loginName,password : this.user.password},
-        	                    	method:"POST",
-        	                    	header : {'content-type':'application/x-www-form-urlencoded'},
-        	                    	success: function (res) {
-        	                    			if(res.data) {
-        	                    				uni.reLaunch({
-        	                    					url: '/pages/home/info1/home_page'
-        	                    				});
-        	                    			} else {
-												that.$refs.popup2.open();
-        	                    			}
-        	                    		},
-        	                    });
-        	                }else{
-        	                    uni.showToast({ title: graceChecker.error, icon: "none" });
-        	                }
-        	            },
+		formSubmit (e) {
+			//将下列代码加入到对应的检查位置
+			//定义表单规则
+			var rule = [
+				{name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
+				{name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入密码"}
+			];
+			//进行表单检查
+			var formData = e.detail.value;
+			var checkRes = graceChecker.check(formData, rule);
+			var that = this;
+			if(checkRes){
+				uni.request({
+					url: 'http://192.168.1.104:8080/gongyv_manage/api/login.action',
+					data: {loginName: this.user.loginName,password : this.user.password},
+					method:"POST",
+					header : {'content-type':'application/x-www-form-urlencoded'},
+					success: function (res) {
+							if(res.data) {
+								try {
+									uni.setStorageSync('loginName', that.user.loginName);
+								} catch (e) {
+									
+								}
+								uni.reLaunch({
+									url: '/pages/home/info1/home_page'
+								});
+							} else {
+								that.$refs.popup2.open();
+							}
+						},
+				});
+			}else{
+				uni.showToast({ title: graceChecker.error, icon: "none" });
+			}
+		},
 						
-						
-		
 		register(){
 			uni.navigateTo({
 				url: 'register/register'

@@ -106,7 +106,7 @@
 					<text class="text">管理费</text>
 				</uni-grid-item>
 				<uni-grid-item>
-					<text class="text">{{chargeObject.adminFee}}</text>
+					<text class="text">{{chargeObject.manageFee}}</text>
 				</uni-grid-item>
 				<uni-grid-item>
 					<text class="text"> - </text>
@@ -143,13 +143,16 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view>
-		
+		<uni-popup ref="popup" type="center">
+			信息错误
+		</uni-popup>
 		
 		
 		<!--在线交租按钮-->
 		<view class="btn">
 			<!--<navigator url="../../login/login"></navigator>-->
 			<button type="primary">在线交租</button>
+			
 		</view>
 		
 		<!--tabbar-->
@@ -158,6 +161,7 @@
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import uniGrid from "@/components/uni-grid/uni-grid.vue"
 	import uniGridItem from "@/components/uni-grid-item/uni-grid-item.vue"
 	import footerNav from "../../../components/footer/footer_nav.vue"
@@ -185,7 +189,7 @@
 					currentHotWater:"",
 					hotWaterFee:"",
 					
-					adminFee:"",
+					manageFee:"",
 					rent:"",
 					total:""
 					
@@ -193,10 +197,28 @@
 				
 			}
 		},
+		
+		onLoad() {
+			var that = this;
+			var loginName = uni.getStorageSync('loginName');
+			uni.request({
+				url: 'http://192.168.1.104:8080/gongyv_manage/api/fetchRent.action',
+				data: {
+					loginName: loginName
+					},
+				method:"POST",
+				header : {'content-type':'application/x-www-form-urlencoded'},
+				success: function (res) {
+						if(res.data) {
+							that.chargeObject = res.data;
+						} else {
+							that.$refs.popup.open();
+						}
+					},
+			});
+		},
+		
 		methods: {
-			onload(){
-				
-			}
 			/*openbtn(){
 				uni.requestPayment({
 					provider: 'alipay',
@@ -214,7 +236,8 @@
 		components: {
 			uniGrid,
 			uniGridItem,
-			footerNav
+			footerNav,
+			uniPopup
 		}
 		
 	}
