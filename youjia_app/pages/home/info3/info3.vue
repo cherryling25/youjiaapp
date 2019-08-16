@@ -9,25 +9,31 @@
 			<uni-collapse accordion="true">
 				<uni-collapse-item title="合约租期">
 					<view style="padding: 30upx;">
-						2019-01-01 到 2019-06-06
+						{{myInfo.leaseStartDate}} 到 {{myInfo.leaseEndDate}}
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="社区编号">
 					<view style="padding: 30upx;">
-						青年社区一栋
+						{{myInfo.buildingNumber}}
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="押金">
 					<view style="padding: 30upx;">
-						200元
+						{{myInfo.deposit}}
 					</view>
 				</uni-collapse-item>
 			</uni-collapse>
 		</view>
 		
 		<view class="btn">
-		        <button type="default" @tap="open">退租申请</button>
+				
+		        <button type="default" @tap="open" v-if="myInfo.status == 'NORMAL'">退租申请</button>
+				<button type="default" v-if="myInfo.status == 'WITHDRAW'" disabled>退租审核中</button>
 		</view>
+		
+		<uni-popup ref="popup" type="center">
+			退租申请已发送至管理员
+		</uni-popup>
 		
 		<view class="btn2">
 			<navigator url="../../login/login">
@@ -40,22 +46,71 @@
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import {uniCollapse,uniCollapseItem} from "@dcloudio/uni-ui"
 	
 	export default {
 		data() {
 			return {
+				myInfo:{
+					leaseStartDate:"",
+					leaseEndDate:"",
+					buildingNumber:"",
+					deposit:"",
+					status:""
+				}
 				
 			}
 		},
+		
+		onLoad() {
+			var that = this;
+			var loginName = uni.getStorageSync('loginName');
+			uni.request({
+				url: 'http://192.168.1.104:8080/gongyv_manage/api/fetchRoom.action',
+				data: {
+					loginName: loginName
+					},
+				method:"POST",
+				header : {'content-type':'application/x-www-form-urlencoded'},
+				success: function (res) {
+						if(res.data) {
+							that.myInfo = res.data;
+						}
+					},
+			});
+		},
+		
 		methods: {
 			open(){
+				var that = this;
+				var loginName = uni.getStorageSync('loginName');
 				uni.showModal({
 					title: '提示',
 					content: '确认退房？',
 					success: function (res) {
 						if (res.confirm) {
-							console.log('用户点击确定');
+							uni.request({
+								url: 'http://192.168.1.104:8080/gongyv_manage/api/chekoutRoom.action',
+								data: {
+									loginName: loginName
+									},
+								method:"POST",
+								header : {'content-type':'application/x-www-form-urlencoded'},
+								success: function (res) {
+										if(res.data) {
+											that.$refs.popup.open();
+											that.myInfo.status = 'WITHDRAW';
+											function out(){
+												that.$refs.popup.close();
+												
+											}
+											setTimeout(out,1500);   //   在1500毫秒后只执行一次
+											
+											
+										}
+									},
+							});
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
@@ -65,7 +120,8 @@
 		},
 		components: {
 			uniCollapse,
-			uniCollapseItem
+			uniCollapseItem,
+			uniPopup
 		}
 	}
 </script>

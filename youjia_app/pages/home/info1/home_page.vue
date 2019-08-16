@@ -150,7 +150,6 @@
 		
 		<!--在线交租按钮-->
 		<view class="btn">
-			<!--<navigator url="../../login/login"></navigator>-->
 			<button type="primary">在线交租</button>
 			
 		</view>

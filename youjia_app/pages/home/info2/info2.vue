@@ -4,13 +4,15 @@
 		<view class="sel">
 			<view @tap="showSinglePicker" v-if="shopList.length != 0"> &nbsp;&nbsp;&nbsp;当前选择: {{shopList[index]}}</view>
 			 <mpvue-picker ref="mpvuePicker" :mode="mode" :pickerValueDefault="index" @onChange="onChange" @onConfirm="onConfirm" @onCancel="onCancel" :pickerValueArray="shopList">
+				<view class="uni-input">{{shopList[index]}}</view>
 			 </mpvue-picker>
 		</view>
         
 		
 		<!--房源信息-->
+		
 		<view class="card">
-			<uni-card title="101室 (一室一厅)" thumbnail="../../../static/footer_icon/a1.png">
+			<uni-card title="102室(一室一厅)" thumbnail="../../../static/footer_icon/a1.png">
 				已租
 			</uni-card>
 		</view>
@@ -44,13 +46,32 @@
 	export default {
 		data() {
 			return {
-				//array: ['有家青年社区一栋', '有家青年社区二栋', '有家青年社区三栋'],
-				shopList:['有家青年社区一栋', '有家青年社区二栋', '有家青年社区三栋'],
+				shopList:[1,2,3],
 				index:[0],
 				mode: 'selector',
 				
 			}
 		},
+		
+		onLoad() {
+			var that = this;
+			
+			uni.request({
+				url: 'http://192.168.1.104:8080/gongyv_manage/api/fetchBuilding.action',
+				data: {},
+				method:"POST",
+				header : {'content-type':'application/x-www-form-urlencoded'},
+				success: function (res) {
+						if(res.data) {
+							//that.shopList = res.data;
+						} else {
+							that.$refs.popup.open();
+						}
+					},
+			});
+		},
+		
+		
 		methods: {
 			showPicker() {
 			  this.$refs.mpvuePicker.show();
