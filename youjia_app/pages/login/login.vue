@@ -84,7 +84,7 @@
 			//定义表单规则
 			var rule = [
 				{name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
-				{name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入密码"}
+				{name:"password", checkType : "string", checkRule:"6,8",  errorMsg:"请输入正确密码"}
 			];
 			//进行表单检查
 			var formData = e.detail.value;
