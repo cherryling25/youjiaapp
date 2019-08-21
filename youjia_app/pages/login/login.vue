@@ -1,12 +1,7 @@
 <template>
 	<view class="content">
-		<view class="image-list">
-			<view class="image-item" v-for="(item,index) in array" :key="index">
-				<view class="image-content">
-					<image style="width: 350px; height: 300px;" :mode="item.mode" :src="src"
-						@error="imageError"></image>
-				</view>
-			</view>
+		<view class="image-content">
+			<image class="img" :src="src" mode="aspectFill"></image>
 		</view>
 		
 		<view class="uni-padding-wrap uni-common-mt">
@@ -59,10 +54,8 @@
 			  loginName: '13849284829',
 			  password: 'lin123'
 			},
-            array: [{
-                mode: 'scaleToFill',
-            }],
-            src: '../../static/login-logo.jpg'
+            src: '../../static/login-logo.jpg',
+			
         }
     },
 	
@@ -71,18 +64,20 @@
 		},
 		
     methods: {
-        imageError: function(e) {
-            console.error('image发生error事件，携带值为' + e.detail.errMsg)
-        },
-		
 		openPopup(e){
             this.$refs.popup.open();
         },
 		
 		formSubmit (e) {
+			// #ifdef MP-WEIXIN
+			wx.reLaunch({
+			  url: '/pages/home/info1/home_page'
+			})
+			// #endif
+			
 			//将下列代码加入到对应的检查位置
 			//定义表单规则
-			var rule = [
+			/*var rule = [
 				{name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
 				{name:"password", checkType : "string", checkRule:"6,8",  errorMsg:"请输入正确密码"}
 			];
@@ -113,7 +108,7 @@
 				});
 			}else{
 				uni.showToast({ title: graceChecker.error, icon: "none" });
-			}
+			}*/
 		},
 						
 		register(){
@@ -127,6 +122,14 @@
 </script>
 
 <style>
+	.image-content {
+		width: 100%;
+	}
+	
+	.img{
+		width: 750upx;
+	}
+	
 	.uni-input{
 		border-bottom:1px solid #ccc;
 	}

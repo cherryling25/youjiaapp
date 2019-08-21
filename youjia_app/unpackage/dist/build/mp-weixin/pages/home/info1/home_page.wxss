@@ -1,0 +1,16 @@
+
+.uni-padding-wrap {
+	width: 750rpx;
+	padding: 0;
+}
+.sw-img {
+	width: 750rpx;
+}
+.jiu {
+	margin-top: 35rpx;
+}
+.btn button {
+	width: 94%;
+	margin-top: 7%;
+}
+
