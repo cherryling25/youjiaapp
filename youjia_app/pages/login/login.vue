@@ -51,8 +51,8 @@
         return {
 			title:"",
 			user: {
-			  loginName: '13849284829',
-			  password: 'lin123'
+			  loginName: '17872981234',
+			  password: '12345678'
 			},
             src: '../../static/login-logo.jpg',
 			
@@ -69,17 +69,11 @@
         },
 		
 		formSubmit (e) {
-			// #ifdef MP-WEIXIN
-			wx.reLaunch({
-			  url: '/pages/home/info1/home_page'
-			})
-			// #endif
-			
 			//将下列代码加入到对应的检查位置
 			//定义表单规则
-			/*var rule = [
+			var rule = [
 				{name:"loginName", checkType : "phoneno", checkRule:"",  errorMsg:"请输入正确的手机号"},
-				{name:"password", checkType : "string", checkRule:"6,8",  errorMsg:"请输入正确密码"}
+				{name:"password", checkType : "notnull", checkRule:"",  errorMsg:"请输入正确密码"}
 			];
 			//进行表单检查
 			var formData = e.detail.value;
@@ -108,7 +102,7 @@
 				});
 			}else{
 				uni.showToast({ title: graceChecker.error, icon: "none" });
-			}*/
+			}
 		},
 						
 		register(){

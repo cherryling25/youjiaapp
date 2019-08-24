@@ -145,7 +145,7 @@
 			</uni-grid>
 		</view>
 		<uni-popup ref="popup" type="center">
-			信息错误
+			信息加载失败
 		</uni-popup>
 
 

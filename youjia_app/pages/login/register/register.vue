@@ -3,11 +3,15 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<form :model="user" @submit="formSubmit">
 				<view class="uni-form-item uni-column">
+					<input class="uni-input" v-model="user.name" name="name" focus placeholder="姓名" />
+				</view>
+				
+				<view class="uni-form-item uni-column">
 					<input class="uni-input" v-model="user.phone" name="phone" maxlength="11" placeholder="请输入手机号码" />
 				</view>
 
 				<view class="uni-form-item uni-column">
-					<input class="uni-input" v-model="user.idCard" name="idCard" maxlength="18" placeholder="请输入身份证号码" />
+					<input class="uni-input" type="idcard" v-model="user.idCard" name="idCard" maxlength="18" placeholder="请输入身份证号码" />
 				</view>
 
 				<view class="uni-form-item uni-column">
@@ -82,10 +86,11 @@
 		data() {
 			return {
 				user: {
+					name:"lemon",
 					phone: "17872981234",
 					idCard: "431172867264536121",
-					password: "1234",
-					confirmedPassword: "1234"
+					password: "12345678",
+					confirmedPassword: "12345678"
 				},
 				imageList: [], //保存图片路径集合
 				imageLength: 3, //限制图片张数
@@ -102,7 +107,14 @@
 			formSubmit(e) {
 				//将下列代码加入到对应的检查位置
 				//定义表单规则
-				var rule = [{
+				var rule = [
+					{
+						name: "name",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: "请输入你的真实姓名"
+					},
+					{
 						name: "phone",
 						checkType: "phoneno",
 						checkRule: "",
@@ -110,8 +122,8 @@
 					},
 					{
 						name: "idCard",
-						checkType: "same",
-						checkRule: "18",
+						checkType: "notnull",
+						checkRule: "",
 						errorMsg: "请输入正确的身份证号"
 					},
 					{
@@ -137,6 +149,7 @@
 						filePath: this.imageList[0],
 						name: 'files',
 						formData: {
+							name:this.user.name,
 							phone: this.user.phone,
 							idCard: this.user.idCard,
 							password: this.user.password,

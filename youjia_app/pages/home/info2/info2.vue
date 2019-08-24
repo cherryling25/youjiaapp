@@ -16,6 +16,9 @@
 			<uni-card title="-" thumbnail="../../../static/footer_icon/a1.png">
 				{{room.roomNumber}} {{room.status}}
 			</uni-card>
+			<uni-popup ref="popup" type="center">
+				注册成功
+			</uni-popup>
 		</view>
 
 
@@ -23,6 +26,7 @@
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue'
 	import uniCard from "@/components/uni-card/uni-card"
 
@@ -97,7 +101,8 @@
 		},
 		components: {
 			mpvuePicker,
-			uniCard
+			uniCard,
+			uniPopup
 
 		}
 	}
