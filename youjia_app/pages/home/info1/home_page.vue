@@ -202,7 +202,7 @@
 			var that = this;
 			var loginName = uni.getStorageSync('loginName');
 			uni.request({
-				url: 'http://192.168.1.104:8080/gongyv_manage/api/fetchRent.action',
+				url: 'http://192.168.1.104:8080/youjiabackend/api/fetchRent',
 				data: {
 					loginName: loginName
 				},

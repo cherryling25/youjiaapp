@@ -81,7 +81,7 @@
 			var that = this;
 			if(checkRes){
 				uni.request({
-					url: 'http://192.168.1.104:8080/gongyv_manage/api/login.action',
+					url: 'http://192.168.1.104:8080/youjiabackend/api/login',
 					data: {loginName: this.user.loginName,password : this.user.password},
 					method:"POST",
 					header : {'content-type':'application/x-www-form-urlencoded'},

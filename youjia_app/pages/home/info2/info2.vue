@@ -46,7 +46,7 @@
 		onLoad() {
 			var that = this;
 			uni.request({
-				url: 'http://192.168.1.104:8080/gongyv_manage/api/fetchBuilding.action',
+				url: 'http://192.168.1.104:8080/youjiabackend/api/fetchBuilding',
 				data: {},
 				method: "POST",
 				header: {

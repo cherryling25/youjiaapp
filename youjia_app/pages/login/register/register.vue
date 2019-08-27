@@ -145,7 +145,7 @@
 				var that = this;
 				if (checkRes) {
 					uni.uploadFile({
-						url: 'http://192.168.1.104:8080/gongyv_manage/api/register.action',
+						url: 'http://192.168.1.104:8080/youjiabackend/api/register',
 						filePath: this.imageList[0],
 						name: 'files',
 						formData: {
