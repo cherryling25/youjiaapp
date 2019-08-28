@@ -11,10 +11,18 @@
 
 
 		<!--房源信息-->
-
+		
 		<view class="card" v-for="room in rooms">
-			<uni-card title="-" thumbnail="../../../static/footer_icon/a1.png">
-				{{room.roomNumber}} {{room.status}}
+			<uni-card>
+				<view class="uni-swiper-msg">
+					<view class="uni-swiper-msg-icon">
+						<image src="../../../static/footer_icon/a1.png" mode="widthFix"></image>
+					</view>
+					<view>
+						<text>{{room.roomNo}}</text>
+					</view>
+				</view>
+				 {{room.roomStatus}}
 			</uni-card>
 			<uni-popup ref="popup" type="center">
 				注册成功
@@ -40,6 +48,7 @@
 				index: [0],
 				mode: 'selector',
 				rooms: []
+				
 			}
 		},
 
@@ -57,8 +66,8 @@
 						that.shopList.pop();
 						for (var i = 0; i < res.data.length; i++) {
 							var item = {};
-							item.label = res.data[i].buildingNumber;
-							item.value = res.data[i].buildingId;
+							item.label = res.data[i].buildingNo;
+							item.value = res.data[i].id;
 							item.rooms = res.data[i].roomList;
 							that.shopList.push(item);
 						}
