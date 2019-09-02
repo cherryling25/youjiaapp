@@ -9,7 +9,7 @@
 			<uni-collapse accordion="true">
 				<uni-collapse-item title="合约租期">
 					<view style="padding: 30upx;">
-						{{myInfo.leaseStartDate}} 到 {{myInfo.leaseEndDate}}
+						{{myInfo.effetiveDateString}} 到 {{myInfo.expiredDateString}}
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="社区编号">
@@ -27,8 +27,9 @@
 
 		<view class="btn">
 
-			<button type="default" @tap="open" v-if="myInfo.status == 'NORMAL'">退租申请</button>
-			<button type="default" v-if="myInfo.status == 'WITHDRAW'" disabled>退租审核中</button>
+			<button type="default" @tap="open" v-if="myInfo.leaseStatus == 'AVAILABEL'">退租申请</button>
+			<button type="default" v-if="myInfo.leaseStatus == 'WITHDRAWREQUEST'" disabled>退租审核中</button>
+			<button type="default" v-if="myInfo.leaseStatus == 'WITHDRAWED'" disabled>已退租</button>
 		</view>
 
 		<uni-popup ref="popup" type="center">
@@ -47,30 +48,29 @@
 
 <script>
 	import uniPopup from "@/components/uni-popup/uni-popup.vue"
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
+	import {uniCollapse,uniCollapseItem} from "@dcloudio/uni-ui"
 
 	export default {
+		
+		
 		data() {
 			return {
 				myInfo: {
-					leaseStartDate: "",
-					leaseEndDate: "",
+					effetiveDateString: "",
+					expiredDateString: "",
 					buildingNumber: "",
 					deposit: "",
-					status: ""
+					leaseStatus: ""
 				}
 
 			}
 		},
-
+		
 		onLoad() {
 			var that = this;
 			var loginName = uni.getStorageSync('loginName');
 			uni.request({
-				url: 'http://192.168.1.104:8080/youjiabackend/api/fetchRoom',
+				url: 'http://192.168.1.104:8080/youjiabackend/api/fetchLease',
 				data: {
 					loginName: loginName
 				},
@@ -96,7 +96,7 @@
 					success: function(res) {
 						if (res.confirm) {
 							uni.request({
-								url: 'http://192.168.1.104:8080/gongyv_manage/api/chekoutRoom.action',
+								url: 'http://192.168.1.104:8080/youjiabackend/api/withdrawLease',
 								data: {
 									loginName: loginName
 								},
@@ -107,7 +107,7 @@
 								success: function(res) {
 									if (res.data) {
 										that.$refs.popup.open();
-										that.myInfo.status = 'WITHDRAW';
+										that.myInfo.leaseStatus = 'WITHDRAWREQUEST';
 
 										function out() {
 											that.$refs.popup.close();

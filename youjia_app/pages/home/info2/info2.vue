@@ -66,7 +66,7 @@
 						that.shopList.pop();
 						for (var i = 0; i < res.data.length; i++) {
 							var item = {};
-							item.label = res.data[i].buildingNo;
+							item.label = res.data[i].label;
 							item.value = res.data[i].id;
 							item.rooms = res.data[i].roomList;
 							that.shopList.push(item);
