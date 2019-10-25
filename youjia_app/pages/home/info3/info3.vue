@@ -3,7 +3,7 @@
 		<view class="image-content">
 			<image class="img" src="../../../static/login-logo.jpg" mode="aspectFill"></image>
 
-		</view>
+ 		</view>
 
 		<view class="collapse">
 			<uni-collapse accordion="true">
